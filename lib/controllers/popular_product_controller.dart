@@ -44,7 +44,7 @@ class PopularProductController extends GetxController{
     }
 
   int checkQuantity(int quantity){
-    if((_inCartItems+quantity<0)){
+    if((_inCartItems+quantity)<0){
       Get.snackbar("Itens", "Deve ser maior do que zero",
       backgroundColor: AppColors.mainColor,
       colorText: Colors.white
@@ -73,7 +73,7 @@ class PopularProductController extends GetxController{
   }
 
   void addItem(ProductModel product ){
-    if(_quantity>0){
+  //  if(_quantity>0){
       _cart.addItem(product, _quantity);
       _quantity = 0;
       _inCartItems = _cart.getQuantity(product);
@@ -81,9 +81,8 @@ class PopularProductController extends GetxController{
       _cart.items.forEach((key, value) {
         print('id= ${value.id} and quantity= ${value.quantity}');
        });
-    }else {
-      
-    }
+  //  }
+    update();
   }
 
   int get totalItems{

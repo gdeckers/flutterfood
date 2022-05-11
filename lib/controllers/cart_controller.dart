@@ -17,11 +17,12 @@ class CartController extends GetxController{
     if(_items.containsKey(product.id!)){
       _items.update(product.id!, (value) {
         totalQuantity = value.quantity!+quantity;
+        print('totalqt=$totalQuantity');
         return CartModel(
-          id: product.id,
-          name: product.name,
-          price: product.price,
-          img: product.img,
+          id: value.id,
+          name: value.name,
+          price: value.price,
+          img: value.img,
           quantity: value.quantity!+quantity,
           isExist: true,
           time: DateTime.now().toString(),
@@ -57,21 +58,22 @@ class CartController extends GetxController{
   }
 
   bool existInCArt(ProductModel product){
-    if(_items.containsKey(product.id!)){
+    if(_items.containsKey(product.id)){
       return true;
     }
     return false;
   }
 
-  getQuantity(ProductModel product){
+  int getQuantity(ProductModel product){
     var quantity =0;
-    if(_items.containsKey(product.id!)){
+    if(_items.containsKey(product.id)){
       _items.forEach((key, value) {
-        if(key==product.id!){
+        if(key==product.id){
           quantity = value.quantity!;
         }
        });
     }
+    return quantity;
   }
 
   int get totalItems{

@@ -51,7 +51,18 @@ class PopularFoodDetail extends StatelessWidget {
                 GestureDetector(
                   onTap: (){Get.to(()=>MainFoodPage());},
                   child: AppIcon(icon: Icons.arrow_back_ios)),
-                AppIcon(icon: Icons.shopping_cart_outlined)
+                GetBuilder<PopularProductController>(builder: (controller){
+                  return Stack(
+                    children: [
+                      AppIcon(icon: Icons.shopping_cart_outlined),
+                      Get.find<PopularProductController>().totalItems>=1?
+                        Positioned(
+                            right:0, top:0,
+                            child: AppIcon(icon: Icons.circle, size: 20, iconColor: Colors.transparent, backgroundColor: AppColors.mainColor,)):
+                          Container(),
+                    ],
+                  );
+                }),
               ],
             ),
           ),
