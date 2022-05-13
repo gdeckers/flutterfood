@@ -29,9 +29,9 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: CartPage(),  //MainFoodPage(), // RecommendedFood(), //
-      //initialRoute: RouteHelper.initial,
-      //getPages: RouteHelper.routes,
+      home: MainFoodPage(),  //MainFoodPage(), // RecommendedFood(), //CartPage()
+      initialRoute: RouteHelper.initial,
+      getPages: RouteHelper.routes,
     );
   }
 }
