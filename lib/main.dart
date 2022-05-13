@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutterfood/controllers/popular_product_controller.dart';
+import 'package:flutterfood/pages/cart/cart_page.dart';
 import 'package:flutterfood/pages/food/popular_food_detail.dart';
 import 'package:flutterfood/pages/food/recommended_food_detail.dart';
 import 'package:flutterfood/pages/home/home_food_page.dart';
@@ -28,9 +29,9 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: MainFoodPage(), // RecommendedFood(), //
-      initialRoute: RouteHelper.initial,
-      getPages: RouteHelper.routes,
+      home: CartPage(),  //MainFoodPage(), // RecommendedFood(), //
+      //initialRoute: RouteHelper.initial,
+      //getPages: RouteHelper.routes,
     );
   }
 }
