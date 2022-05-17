@@ -9,6 +9,7 @@ import 'package:flutterfood/widgets/big_text.dart';
 import 'package:flutterfood/widgets/small_text.dart';
 import 'package:get/get.dart';
 
+import '../../routes/route_helper.dart';
 import '../../utils/app_constants.dart';
 
 class CartPage extends StatelessWidget {
@@ -26,7 +27,7 @@ class CartPage extends StatelessWidget {
                 children: [
                   GestureDetector(
                     onTap: () {
-                      Get.to(()=>MainFoodPage());
+                      Get.toNamed(RouteHelper.getInitial());
                     },
                     child: AppIcon(icon: Icons.arrow_back_ios, iconColor: Colors.white,
                       backgroundColor: AppColors.mainColor,
@@ -35,7 +36,7 @@ class CartPage extends StatelessWidget {
                   SizedBox(width: Dimensions.width20*5,),
                   GestureDetector(
                     onTap: () {
-                      Get.to(()=>MainFoodPage());
+                      Get.toNamed(RouteHelper.getInitial());
                     },
                     child: AppIcon(icon: Icons.home_outlined, iconColor: Colors.white,
                       backgroundColor: AppColors.mainColor,
@@ -58,8 +59,9 @@ class CartPage extends StatelessWidget {
                 context: context,
                 removeTop: true,
                 child: GetBuilder<CartController>(builder: (cartController) {
+                  var _cartList = cartController.getItems;
                   return ListView.builder(
-                  itemCount: cartController.getItems.length,
+                  itemCount: _cartList.length,
                   itemBuilder: (_,index){
                     return Container(
                       height: Dimensions.height20*5, 
@@ -103,15 +105,15 @@ class CartPage extends StatelessWidget {
                                           children: [
                                             GestureDetector(
                                               onTap: () {
-                                                //popularProduct.setQuantity(false);
+                                                cartController.addItem(_cartList[index].product!, -1);
                                               },
                                               child: Icon(Icons.remove, color: AppColors.signColor,)),
                                             SizedBox(width: Dimensions.width10/2,),
-                                            BigText(text: '0'), //'${popularProduct.inCartItems}'
+                                            BigText(text: '${_cartList[index].quantity}'), //'${popularProduct.inCartItems}'
                                             SizedBox(width: Dimensions.width10/2,),
                                             GestureDetector(
                                               onTap: () {
-                                                //popularProduct.setQuantity(true);
+                                                cartController.addItem(_cartList[index].product!, 1);
                                               },
                                               child: Icon(Icons.add, color: AppColors.signColor,)),
                                           ],

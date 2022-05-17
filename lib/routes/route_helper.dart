@@ -3,6 +3,8 @@ import 'package:flutterfood/pages/food/recommended_food_detail.dart';
 import 'package:flutterfood/pages/home/home_food_page.dart';
 import 'package:get/get.dart';
 
+import '../pages/cart/cart_page.dart';
+
 class RouteHelper {
   static const String initial = '/';
   static const String popularFood = '/popular-food';
@@ -30,6 +32,12 @@ class RouteHelper {
       var pageId = Get.parameters['pageId'];
       return RecommendedFood(pageId: int.parse(pageId!));
     },
+    ),
+
+    GetPage(name: cartPage, page: (){
+      return CartPage();
+    },
+      transition: Transition.fadeIn,
     ),
 
   ];
